@@ -1,0 +1,61 @@
+
+前两个例子中的 test* 是自练习
+前两个例子是 2.0以上，如quartz-2.2.2
+第一例：讲解清楚 
+包: quartz.example1
+第二例：运行通畅 
+包: quartz.example2
+
+第三例：只能是低版本  -- 运行的时候因为包的兼容性问题，前两例的部分类会整体注释，解决方式是先添加 quartz-1.6.5.jar 后添加 quartz-2.2.2.jar;不过这样可能运行有问题，仅供阅读代码
+来源：http://blog.csdn.net/star20081745/article/details/49916415 
+包: quartz.example3
+类库：quartz-1.6.5
+核心：JobDetail jobDetail = new JobDetail(jobName, JOB_GROUP_NAME, job.getClass());//任务名，任务组，任务执行类，第三个指标是用到的job任务
+
+
+
+第一例
+来源：  http://liuzidong.iteye.com/blog/1118992
+特别说明:如无特别说明,所有有关quartz示例基于官方示例 
+一 Quarta介绍 
+1 Quartz是什么 
+Quartz就是一个纯 Java 实现的作业调度工具，相当于数据库中的 Job、Windows 的计划任务、Unix/Linux 下的 Cron，但 Quartz 可以把排程控制的更精细. 
+2 Quartz 框架的发展历程 
+Quartz项目是由James House创立的,在1998年就有该框架最初的构思,包括作业队列的概念，使用线程池来处理作业,在2001年春天在SourceForge 上创立了该项目. 
+Quartz 的目录结构和内容 
+Docs	Quartz 框架的JavaDoc Api 说明文档 
+Examples	多方面使用 Quartz 的例子 
+Lib	Quartz 使用到的第三方包 
+quartz-jboss	提供了特定于 JBoss 特性的源代码 
+quartz-oracle	提供了特定于 Oracle 特性的源代码 
+quartz-weblogic	提供了特定于 WebLogic 特性的源代码 
+二 Quartz的应用场景 
+场景 #1: 邮件提醒和告警 
+场景 #2: 执行文件传输操作 
+场景 #3: 创建销售报表 
+三 Quarta的安装及使用 
+官网:http://www.quartz-scheduler.org/下载最新的文件,需要你注册才能下载!也可在附件中下载 
+四 了解Quartz体系结构 
+Quartz对任务调度的领域问题进行了高度的抽象，提出了调度器、任务和触发器这3个核心的概念，并在org.quartz通过接口和类对重要的这些核心概念进行描述 
+Quartz 调度包的两个基本单元是作业和触发器。作业是能够调度的可执行任务，触发器提供了对作业的调度. 
+调度器：调度器用于将与作业触发器关联,一个作业可关联多个触发器,这样每个触发器被可以触发的作业执行;一个触发器可用于控制多个作业，触发触发时， 
+全部作业将获得调度。Quartz的调度器由Scheduler接口体现. 
+作业：只需实现org.quartz.job接口即可.Job接口包含一个方法 execute(),execute方法体是被调度的作业体。一旦实现Job接口和execute()方法， 
+Quartz确定作业运作的时候，它将调用 execute()方法体。 
+触发器：有SimpleTrigger和CronTrigger两种类型 
+五 工程图片 
+六 具体代码如下 
+Job：是一个接口只有一个方法void execute(JobExecutionContext context)，开发者实现该接口定义运行任务，JobExecutionContext类提供了调度上下文的各种信息。Job运行时的信息保存在JobDataMap实例中 
+
+
+第二例
+来源： http://jqsl2012.iteye.com/blog/1260666
+/**
+ * quartz的类写的很优雅，类的方法能进行连写，和jQuery很像,好处很明显，优雅的同时也减少了代码，提高了创建类对象的使用
+ * 
+ * quartz包含job和trigger两个概念，job就是你要做的事情，trigger当然是触发器，他们都是有名称和组的，并且还有参数，
+ * 这个参数呢其实就是一个quartz自己搞的一个继承了java.util.Map的类org.quartz.JobDataMap。
+ * 基本上org.quartz.*包能完成大部分的定时器的任务，因为初学这个所以今天也就只看了这个包的内容，感觉还是非常容易伤手的。
+ * 总结：org.quartz.*包下基本上搞懂job、trigger、scheduler这3个相关的东西就行了，因为定时相关的就是围绕这3个东西展开的。
+ */
+	 
